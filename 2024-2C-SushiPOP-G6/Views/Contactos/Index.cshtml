@@ -1,0 +1,27 @@
+﻿@model IEnumerable<_2024_2C_SushiPOP_G6.Models.Contacto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+	<h2 class="text-center">Lista de Mensajes Sin Leer</h2>
+    
+	<table class="table table-borderless">
+		<thead>
+		<tr>
+			<th>Nombre completo</th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+		@foreach (var contacto in Model)
+		{
+			<tr>
+				<td>@contacto.NombreCompleto</td>
+				<td><a href="@Url.Action("Details", new { id = contacto.Id })">leer mensaje</a></td>
+			</tr>
+		}
+		</tbody>
+	</table>
+</div>

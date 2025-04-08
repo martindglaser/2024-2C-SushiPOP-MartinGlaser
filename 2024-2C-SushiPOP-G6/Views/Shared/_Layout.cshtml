@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - _2024_2C_SushiPOP_G6</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/_2024_2C_SushiPOP_G6.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/imagenes/logo.png" width="30%" height="80%" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    @* <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Productos" asp-action="Index">Productos</a>
+                        </li>
+                    </ul> *@
+                    <partial name="_menuPartial" />
+                    @*LOGIN*@
+                    <partial name="_LoginPartial" />  
+                    
+                </div>
+            </div>
+            
+        </nav>
+    </header>
+    
+
+    @if (ViewData["ContainerType"]?.ToString() == "full-width")
+    {
+        <div class="container-fluid">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    }
+
+    <footer class="border-top footer text-muted bg-body p-3">
+        <div class="container row-gap-3 p-2" >
+            <div class="row">
+                <div class="col">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="~/imagenes/logo.png" width="150rem" height="60rem" />
+                    </a>
+                </div>
+                <div class="col">
+                    <partial name="_menuPartial" />
+                </div>
+                <div class="col">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="navbar-brand" asp-area="" asp-controller="Contactos" asp-action="Create">Contacto</a>
+                        </li>
+                        <li class="nav-item">                          
+                            <a class="navbar-brand" asp-area="" asp-controller="Pedidos" asp-action="SeguirPedido">Seguir pedido</a>
+                        </li>
+                        @if (User.IsInRole("CLIENTE") || User.IsInRole("EMPLEADO"))
+                        {
+                            <li class="nav-item">
+                                <a class="navbar-brand" asp-area="" asp-controller="Reservas" asp-action="Create">Reservas</a>
+                        </li>
+                        }
+                        <li class="nav-item">
+                            <a class="navbar-brand" asp-area="" asp-controller="Reclamos" asp-action="Create">Reclamos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Legales</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row text-center">
+                <p>&copy; 2024 SushiPOP - Desarrollo con nuevas tecnologias - Grupo 6</p>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

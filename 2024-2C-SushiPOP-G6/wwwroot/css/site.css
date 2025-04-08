@@ -1,0 +1,110 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+.home {
+    font-family: nunito;
+    font-weight: bold;
+    font-size: 55px;
+}
+
+.homePromocion {
+    background-image: url('../imagenes/Home/bg_hero.png');
+    height: 375px;
+    background-size: cover;
+    color: #FFFEFE;
+    justify-items: center;
+}
+
+
+.homeDelivery {
+    background-color: #F64C34;
+    height: 375px;
+    color: #FFFEFE;
+    justify-items: center;
+}
+
+
+.palabraDestacadaDelivery {
+    color: #FFDE59;
+    text-decoration: none;
+}
+
+.palabraDestacadaDelivery:hover {
+    color: #FFDE59;
+}
+
+
+.palabraDestacadaPromocion {
+    color: #F26569;
+    text-decoration: none;
+}
+.palabraDestacadaPromocion:hover {
+    color: #F26569;
+}
+
+.homeTitulo {
+    padding: 10px 0;
+    color: #616572;
+    vertical-align: middle;
+}
+
+.card-text{
+    font-size: 20px;
+}
+
+.card-body{
+    padding: 7px;
+}
+
+.cardFavoritos img {
+    height: 300px
+}
+
+.card{
+    margin-bottom: 15px;
+}
+
+.cardLocales {
+    color: #EC1C24;
+}
+
+.localTitulo{
+    font-size: 35px;
+    margin: 10px 0 5px 0;
+}
+
+.localDireccion{
+    font-weight: normal;
+    font-size: 25px
+}
+
+.cardLocales .card-body {
+    background-color: #000000;
+    border: 2px solid #EC1C24;
+}
+
+.cardFavoritos a {
+    text-decoration: none;
+    color: black;
+}

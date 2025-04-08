@@ -1,0 +1,87 @@
+﻿@model IEnumerable<_2024_2C_SushiPOP_G6.Models.Pedido>
+@{
+    ViewData["Title"] = "Index";
+    var estados = ViewData["Estados"] as dynamic[];
+}
+
+
+<h1>Pedidos</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NroPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCompra)
+            </th>
+            <th>
+                Cliente
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NroPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCompra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carrito.Cliente.Nombre)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td> 
+                @estados[item.Estado - 1]
+            </td>
+            <td>
+                @*  mostrar productos *@
+            </td>
+
+                @if (!User.IsInRole("CLIENTE"))
+                {
+                    <td>
+                        <a asp-action="EditEstado" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </td>
+                }
+                else
+                {
+                    @if (item.Estado == 1)//sin confirmar
+                    {
+                        <td>
+                            <a asp-action="CancelarPedido" asp-route-id="@item.Id">Cancelar</a>
+                            <a asp-action="SeguirPedido" asp-route-nroPedido="@item.NroPedido">
+                                Seguir Pedido
+                            </a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <a asp-action="SeguirPedido" asp-route-nroPedido="@item.NroPedido">
+                                Seguir Pedido
+                            </a>
+                        </td>
+                       
+                    }
+                }
+            </tr>
+}
+    </tbody>
+</table>

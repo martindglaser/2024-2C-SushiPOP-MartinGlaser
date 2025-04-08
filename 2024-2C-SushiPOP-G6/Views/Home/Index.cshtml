@@ -1,0 +1,113 @@
+﻿@model _2024_2C_SushiPOP_G6.Models.ViewModels.Home
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["ContainerType"] = "full-width";
+    var fechaActual = @DateTime.Now;
+}
+<div class="home">
+    <div class="homePromocion row align-items-center">
+        @if (Model != null)
+        {
+            <div class="col-4"></div>
+            <div class="col-8">
+                Hoy <span class="palabraDestacadaPromocion">@fechaActual.ToString("dddd").ToUpper()</span> ahorrá un <span class="palabraDestacadaPromocion">@Model.Descuento%</span> en <span class="palabraDestacadaPromocion">@Model.NombreProducto</span>!   
+            </div>
+        }
+    </div>
+    <div class="container text-center">
+        <div class="homeTitulo">Los favoritos<img src="~/imagenes/Home/emoticon_smile.png"/></div>
+        <div class="row">
+            <div class="col-8">
+                <div class="card cardFavoritos" style="width: 100%;">
+                    <img src="~/imagenes/Home/fav_tabla.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <a href="Productos?categoria=Combos">
+                            <p class="card-text">Combo 100% salmón Alaska XL de 40 piezas</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card cardFavoritos" style="width: 100%;">
+                    <img src="~/imagenes/Home/fav_postre.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <a href="Productos?categoria=Postres">
+                            <p class="card-text">Postre helado OREO</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="card cardFavoritos" style="width: 100%;">
+                    <img src="~/imagenes/Home/fav_arrolladitos.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <a href="Productos?categoria=Entradas">
+                            <p class="card-text">Empanaditas chinas de carne</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="card cardFavoritos" style="width: 100%;">
+                    <img src="~/imagenes/Home/fav_tempura.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <a href="Productos?categoria=Entradas">
+                            <p class="card-text">Langostinos rebozados en panko fritos con salsa de tamarindo</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="homeDelivery row align-items-center">
+        <div class="col-8">
+            Hoy <span class="palabraDestacadaDelivery">@fechaActual.ToString("dddd").ToUpper()</span> atendemos de 11 a 14 horas y de 19 a 23 horas por WhatsApp <a  href="https://wa.me/+541140044004" target="_blank" class="palabraDestacadaDelivery">+541140044004</a>
+        </div>
+        <div class="col-4">
+            <img src="~/imagenes/Home/delivery_guy.png" />
+        </div>
+    </div>
+    <div class="container text-center">
+        <div class="homeTitulo">Nuestros locales</div>
+        <div class="locales row">
+            <div class="col-3">
+                <div class="card cardLocales" style="width: 100%;">
+                    <img src="~/imagenes/Home/local_palermo.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="localTitulo">Palermo</p>
+                        <p class="localDireccion">Alto Palermo local 1</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card cardLocales" style="width: 100%;">
+                    <img src="~/imagenes/Home/local_recoleta.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="localTitulo">Recoleta</p>
+                        <p class="localDireccion">Callao 986</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card cardLocales" style="width: 100%;">
+                    <img src="~/imagenes/Home/local_belgrano.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="localTitulo">Belgrano</p>
+                        <p class="localDireccion">Av. Monroe 2401</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card cardLocales" style="width: 100%;">
+                    <img src="~/imagenes/Home/local_caballito.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="localTitulo">Caballito</p>
+                        <p class="localDireccion">Av. Acoyte 234</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

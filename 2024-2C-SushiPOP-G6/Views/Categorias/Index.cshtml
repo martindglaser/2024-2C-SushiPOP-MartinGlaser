@@ -1,0 +1,48 @@
+﻿@model IEnumerable<_2024_2C_SushiPOP_G6.Models.ViewModels.IndexCategoria>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@{
+    ViewData["Title"] = "Categorias";
+}
+
+<div class="row">
+    <div class="col text-center">
+        <h1>Categorias</h1>
+        @if (User.IsInRole("EMPLEADO"))
+        {
+            <p>
+                <a class="btn btn-outline-success" asp-action="Create">Agregar Categoria</a>
+            </p>
+        }
+    </div>
+</div>
+
+
+<div class="row">
+ @foreach (var item in Model){ 
+         @if (item.TieneProductos)
+        { 
+            <div class="col-md-4 g-3 text-center d-flex justify-content-center align-items-center">
+                <div class="card" style="width: 18rem; min-height: 150px">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Nombre</h5>
+                        <p class="card-text">
+                            @item.Descripcion
+                        </p>
+                        <div class="card-body">
+                            @if (User.IsInRole("EMPLEADO"))
+                            {
+                                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a>     
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            }
+                        </div>
+ 
+                    </div>
+                </div>
+            </div>
+         } 
+    }
+</div>

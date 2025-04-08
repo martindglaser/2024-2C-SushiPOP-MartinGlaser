@@ -1,0 +1,167 @@
+﻿@model _2024_2C_SushiPOP_G6.Models.Cliente
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject DbContext DbContext
+
+@{
+    ViewData["Title"] = "Panel de Usuario";
+}
+
+<h1>Panel de usuario</h1>
+
+<h4>Bienvenido, @UserManager.GetUserName(User)!</h4>
+<hr />
+
+<div class="row row-cols-1 row-cols-md-4 g-3 text-center ">
+    @if (User.IsInRole("EMPLEADO"))
+    {
+        <div class="col">
+            <div class="card">
+                <a asp-area="" asp-controller="Clientes" asp-action="Index">
+                    <img src="~/imagenes/PanelUsuario/ADMINISTRAR-CLIENTES.jpg" class="card-img-top" alt="Administrar clientes">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">Administrar clientes</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <a asp-area="" asp-controller="Categorias" asp-action="Index">
+                    <img src="~/imagenes/PanelUsuario/CATEGORIAS.jpg" class="card-img-top" alt="Categorias">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">Categorias</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <a asp-area="" asp-controller="Productos" asp-action="Index">
+                    <img src="~/imagenes/PanelUsuario/PRODUCTOS.jpg" class="card-img-top" alt="Productos">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">Productos</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <a asp-area="" asp-controller="Descuentos" asp-action="Index">
+                    <img src="~/imagenes/PanelUsuario/DESCUENTOS.jpg" class="card-img-top" alt="Descuentos">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">Descuentos</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <a asp-area="" asp-controller="Reservas" asp-action="Index">
+                    <img src="~/imagenes/PanelUsuario/RESERVAS.jpg" class="card-img-top" alt="Reservas">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">Reservas</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <a asp-area="" asp-controller="Contactos" asp-action="Index">
+                    <img src="~/imagenes/PanelUsuario/MENSAJES.jpg" class="card-img-top" alt="Mensajes">
+                </a>
+
+                <div class="card-body">
+                    <h5 class="card-title">Mensajes</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <a asp-area="" asp-controller="Empleados" asp-action="Edit"
+                   asp-route-id=@DbContext.Empleado.FirstOrDefault(i => i.Email == UserManager.GetUserName(User)).Id
+                 >
+                    <img src="~/imagenes/PanelUsuario/DATOS-PERSONALES.jpg" class="card-img-top" alt="Datos Personales">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">Datos personales</h5>
+                    <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+    @if (User.IsInRole("CLIENTE")) 
+    {
+        <div class="col">
+            <div class="card">
+                <a asp-area="" asp-controller="Clientes" asp-action="Edit">
+                    @*asp-route-id=@DbContext.Cliente.FirstOrDefault(i => i.Nombre == UserManager.GetUserName(User)).Id*@
+                    <img src="~/imagenes/PanelUsuario/DATOS-PERSONALES.jpg" class="card-img-top" alt="Datos Personales">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">Datos personales</h5>
+                    <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+    @if (User.IsInRole("CLIENTE") || User.IsInRole("EMPLEADO"))
+    {
+        <div class="col">
+            <div class="card">
+                <a asp-area="" asp-controller="Pedidos" asp-action="Index">
+                    <img src="~/imagenes/PanelUsuario/PEDIDOS.jpg" class="card-img-top" alt="Pedidos">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">Pedidos</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                </div>
+            </div>
+        </div>
+    }
+    
+    @if (User.IsInRole("ADMIN"))
+    {
+        <div class="col">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Administrar empleados</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a class="btn btn-primary" asp-area="" asp-controller="Empleados" asp-action="Index">Ver</a>
+                </div>
+            </div>
+        </div>
+        @*FALTA IMPLEMENTAR DASHBOARD*@
+        <div class="col">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Panel de gestion</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a class="btn btn-primary" asp-area="" asp-controller="Empleados" asp-action="Index">Ver</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<hr />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

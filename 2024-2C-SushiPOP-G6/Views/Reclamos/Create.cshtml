@@ -1,0 +1,98 @@
+﻿@model _2024_2C_SushiPOP_G6.Models.ViewModels.ReclamoViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<h3>Generar reclamo</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="NombreCompleto" class="control-label"></label>
+                <input asp-for="NombreCompleto" class="form-control"   />
+                <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control"  />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetalleReclamo" class="control-label"></label>
+                <textarea asp-for="DetalleReclamo" class="form-control" style="font-size: 18px; height: 150px;"></textarea>
+                <span asp-validation-for="DetalleReclamo" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                @if (User.IsInRole("CLIENTE")){
+                <label asp-for="PedidoId" class="control-label"></label>
+                <select asp-for="PedidoId" class="form-control" asp-items="ViewBag.Pedidos">
+                    <option value="">--Buscar numero--</option>
+                    </select>
+                } else
+                {
+                    <label asp-for="PedidoId" class="control-label"></label>
+                    <input asp-for="PedidoId" class="form-control" />
+                     <span asp-validation-for="PedidoId" class="text-danger"></span> 
+                }
+               
+            
+            </div>
+           @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage)){
+                <div class="modal" id="errorModal" tabindex="-1" role="dialog" style="display:block;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>@ViewBag.ErrorMessage</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            }
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Generar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script>
+            
+            $(document).ready(function () {
+                $('#errorModal').modal('show');
+            });
+                $('.close, .btn-secondary').click(function () {
+                $('#errorModal').modal('hide');
+            });
+        </script>
+}
+

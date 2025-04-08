@@ -1,0 +1,25 @@
+﻿@model _2024_2C_SushiPOP_G6.Models.ViewModels.SeguirPedidoViewModel
+
+<h2>Seguir Pedido</h2>
+
+@if (User.IsInRole("EMPLEADO"))
+{
+    <form method="post" asp-action="SeguirPedido">
+        <div class="form-group">
+            <label for="nroPedido">Número de Pedido</label>
+            <input type="number" class="form-control" id="nroPedido" name="nroPedido" required />
+
+            @if (ViewData.ModelState["NroPedido"]?.Errors.Any() == true)
+            {
+                <span class="text-danger">@ViewData.ModelState["NroPedido"]?.Errors.First().ErrorMessage</span>
+            }
+        </div>
+
+        <button type="submit" class="btn btn-primary">Consultar Estado</button>
+    </form>
+}
+@if (Model != null)
+{
+    <h3>Estado del Pedido: <strong>@Model.Estado</strong></h3>
+    <img src="@Model.EstadoIcono" alt="Estado del Pedido" class="estado-icono">
+}

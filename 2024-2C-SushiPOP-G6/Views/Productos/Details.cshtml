@@ -1,0 +1,45 @@
+﻿@model _2024_2C_SushiPOP_G6.Models.Producto
+
+@{
+    ViewData["Title"] = "Detalle Producto";
+}
+
+<h4 class="mt-4">Detalle Producto</h4>
+<hr />
+
+<div class="container">
+    <div class="row p-2">
+        <div class="col">
+            <img src="~/imagenes/Productos/@Html.DisplayFor(model => model.Foto)" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col align-content-between">
+            <h3>@Html.DisplayFor(model => model.Nombre)</h3>
+            <p>@Html.DisplayFor(model => model.Descripcion)</p>
+            
+            @if (Model.Strock == 0)
+            {
+                <p class="text-decoration-line-through">$@Html.DisplayFor(model => model.Precio)</p>
+                <p>PRODUCTO SIN STOCK</p>
+               
+            }
+            else
+            {
+                <div class="row">
+                    <span class="col text-black">$@Html.DisplayFor(model => model.Precio)</span>
+                    <p class="col btn btn-primary">Add carrito</p>
+                </div>
+            }
+            <div class="col">
+                <div class="row">
+                    @if (User.IsInRole("EMPLEADO"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@Model?.Id" class="col btn btn-secondary btn-s">Edit</a>
+                    }
+                    
+                </div>
+            </div>
+        </div> 
+    </div>
+    @*<a asp-action="Index" class="btn btn-danger col">Back to List</a>*@
+</div>
+

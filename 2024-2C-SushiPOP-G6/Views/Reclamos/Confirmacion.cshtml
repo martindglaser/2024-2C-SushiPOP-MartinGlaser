@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Confirmación de Reclamo";
+}
+
+<h2>@ViewBag.Mensaje</h2>
+
+<div class="text-center">
+    <h2 class="text-success">
+        <i class="bi bi-check-circle"></i> @ViewBag.Mensaje
+    </h2>
+
+    <div class="mt-4">
+        <a asp-action="Create" class="btn btn-primary">Crear otro reclamo</a>
+        <a asp-action="Index"  asp-controller="Home" class="btn btn-secondary">Volver al inicio</a>
+    </div>
+</div>

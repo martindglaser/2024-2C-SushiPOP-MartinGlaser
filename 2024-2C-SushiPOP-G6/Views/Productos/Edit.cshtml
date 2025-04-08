@@ -1,0 +1,65 @@
+﻿@model _2024_2C_SushiPOP_G6.Models.Producto
+
+@{
+    ViewData["Title"] = "Editar productos";
+}
+
+<h4 class="mt-4">Editar Producto</h4>
+<hr />
+<div class="form-row align-items-center">
+    <div class="col-auto">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group mb-2">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" type ="text" class="form-control-plaintext fw-bold" readonly />
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <textarea asp-for="Descripcion" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Precio" class="control-label"></label>
+                <input asp-for="Precio" class="form-control" />
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Costo" class="control-label"></label>
+                <input asp-for="Costo" class="form-control" />
+                <span asp-validation-for="Costo" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Foto" class="control-label"></label>
+                <input asp-for="Foto" class="form-control-plaintext  fw-bold" readonly />
+                <span asp-validation-for="Foto" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Strock" class="control-label"></label>
+                <input asp-for="Strock" class="form-control" />
+                <span asp-validation-for="Strock" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="CategoriaId" class="control-label"></label>
+                <input asp-for="CategoriaId" class="form-control-plaintext fw-bold" readonly />
+            </div>
+
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <a asp-action="Index" class="btn btn-danger">Salir</a>
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

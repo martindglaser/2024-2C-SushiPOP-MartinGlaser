@@ -1,0 +1,64 @@
+﻿@model _2024_2C_SushiPOP_G6.Models.Pedido
+
+@{
+    ViewData["Title"] = "EditEstado";
+}
+
+<h1>Editar estado</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditEstado">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input asp-for="NroPedido" type="hidden" class="form-control" />
+                <span asp-validation-for="NroPedido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="FechaCompra" type="hidden" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input asp-for="Subtotal" type="hidden" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input asp-for="GastoEnvio" type="hidden" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input asp-for="Total" type="hidden" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="Estado">Nuevo Estado</label>
+                <select id="Estado" name="nuevoEstado" class="form-control">
+                    @foreach (var estado in (SelectList)ViewData["Estados"])
+                    {
+                        <option value="@estado.Value">@estado.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <input asp-for="CarritoId" type="hidden" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Actualizar Estado" class="btn btn-primary" />
+            </div>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+            }
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver</a>
+</div>
+

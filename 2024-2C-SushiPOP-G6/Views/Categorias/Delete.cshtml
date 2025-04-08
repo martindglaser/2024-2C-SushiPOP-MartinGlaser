@@ -1,0 +1,17 @@
+﻿@model _2024_2C_SushiPOP_G6.Models.Categoria
+
+@{
+    ViewData["Title"] = "Eliminar Categoria";
+}
+
+    <div class="col text-center">
+        <h1>Categorias</h1>
+    </div>
+    <div style="margin-top: 100px" class="text-center">
+        <h3>Está seguro de borrar la categoría @Html.DisplayFor(model => model.Nombre)? Esta accion es irreversible!</h3>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <a asp-action="Index" style="width: 150px" class="btn btn-primary">Salir</a>
+        <input type="submit" value="Borrar" style="width: 150px" class="btn btn-danger" />
+    </form>
+    </div>

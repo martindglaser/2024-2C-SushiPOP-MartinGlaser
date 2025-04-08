@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Pedido>
+
+<h2>Mis Pedidos</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nro Pedido</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pedido in Model)
+        {
+            <tr>
+                <td>@pedido.NroPedido</td>
+                <td>@pedido.FechaCompra</td>
+                <td>@pedido.Total</td>
+                <td>@ViewBag.ObtenerNombreEstado(pedido.Estado)</td>
+                <td>
+                    @if (pedido.Estado == 1) // Si el pedido está sin confirmar
+                    {
+                        <a href="@Url.Action("CancelarPedido", new { id = pedido.Id })">Cancelar</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

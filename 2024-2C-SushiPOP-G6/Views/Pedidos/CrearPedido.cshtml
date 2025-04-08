@@ -1,0 +1,26 @@
+﻿@model Carrito
+
+<h2>Finalizar Compra</h2>
+
+<div class="row">
+    @foreach (var item in Model.ItemsCarrito)
+    {
+        <div class="col-md-3">
+            <div class="card">
+                <img src="@item.Productos.FirstOrDefault()?.Foto" class="card-img-top" alt="@item.Productos.FirstOrDefault()?.Nombre">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Productos.FirstOrDefault()?.Nombre</h5>
+                    <p class="card-text">Precio: @item.PrecioUnitConDto</p>
+                    <p class="card-text">Cantidad: @item.Cantidad</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div>
+    <<h4>Total: @ViewData["Total"]</h4>
+    <form method="post" action="@Url.Action("CrearPedido")">
+        <button type="submit" class="btn btn-primary">Crear Pedido</button>
+    </form>
+</div>

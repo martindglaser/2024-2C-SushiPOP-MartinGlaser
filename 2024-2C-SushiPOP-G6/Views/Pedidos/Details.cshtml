@@ -1,0 +1,87 @@
+﻿@model _2024_2C_SushiPOP_G6.Models.Pedido
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Pedido</h4>
+    <hr />
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-3">
+        @foreach (var item in Model.Carrito.ItemsCarrito)
+        {
+            <div class="col">
+                <div class="card">
+
+                        <div>
+                            <img src="~/imagenes/Productos/ @Html.DisplayFor(modelItem => item.Productos[0].Foto)"
+                                 alt="@Html.DisplayFor(modelItem => item.Productos[0].Nombre)"
+                                 class="card-img-top" />
+                        </div>
+                        <div class="card-body col">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Productos[0].Nombre)</h5>
+                            <p class="card-text text-truncate">@Html.DisplayFor(modelItem => item.Productos[0].Descripcion)</p>
+                            <div class="row">
+                                <p class="card-text col">
+                                    $@Html.DisplayFor(modelItem => item.PrecioUnitConDto)
+                                </p>
+                                <p class="card-text col text-secondary text-decoration-line-through">
+                                    $@Html.DisplayFor(modelItem => item.Productos[0].Precio)
+                                </p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Carrito.Cliente.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Carrito.Cliente.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Carrito.Cliente.Direccion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Carrito.Cliente.Direccion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Subtotal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Subtotal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.GastoEnvio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GastoEnvio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+    </dl>
+    <a class="btn btn-danger" asp-action="Index">Salir</a>
+    @if (User.IsInRole("CLIENTE"))
+    {
+        <form asp-action="FinalizarPedido">
+            <input type="hidden" asp-for="Id" />
+            <input value="Finalizar" type="submit" class="btn btn-primary" />
+        </form>
+    }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
